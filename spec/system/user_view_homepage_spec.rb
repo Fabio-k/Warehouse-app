@@ -15,7 +15,7 @@ describe 'user visits homepage' do
     Warehouse.create(name: 'Rio', code: 'SDU', city: 'Rio de Janeiro', area: 60_000)
     Warehouse.create(name: 'Maceio', code: 'MCZ', city: 'Maceio', area: 50_000)
 
-    visit('/')
+    visit root_path
     expect(page).not_to have_content('Não existem galpões cadastrados')
 
     expect(page).to have_content('Rio')
@@ -30,7 +30,7 @@ describe 'user visits homepage' do
   end
 
   it 'and there are no warehouses' do
-    visit('/')
+    visit root_path
 
     expect(page).to have_content('Não existem galpões cadastrados')
   end
