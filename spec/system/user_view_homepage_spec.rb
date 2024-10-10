@@ -12,8 +12,10 @@ describe 'user visits homepage' do
   end
 
   it 'and see the listed warehouses' do
-    Warehouse.create(name: 'Rio', code: 'SDU', city: 'Rio de Janeiro', area: 60_000)
-    Warehouse.create(name: 'Maceio', code: 'MCZ', city: 'Maceio', area: 50_000)
+    Warehouse.create(name: 'Rio', code: 'SDU', city: 'Rio de Janeiro', area: 60_000, 
+        address: 'Avenida do Museu do Amanhã, 1000', cep: '20100-000', description: 'Galpão da zona portuária do Rio')
+    Warehouse.create(name: 'Maceio', code: 'MCZ', city: 'Maceio', area: 50_000,
+        address: 'Rua das Mangueira', cep: '4003-202', description: "Pequeno galpão")
 
     visit root_path
     expect(page).not_to have_content('Não existem galpões cadastrados')
