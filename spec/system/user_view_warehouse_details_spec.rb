@@ -9,7 +9,7 @@ describe 'user see details of warehouse' do
     click_on 'Aeroporto SP'
 
     expect(page).to have_content('Galpão GRU')
-    expect(page).to have_content('Aeroporto SP')
+    expect(page).to have_content('Nome: Aeroporto SP')
     expect(page).to have_content('Cidade: Guarulhos')
     expect(page).to have_content('Área: 100000 m2')
     expect(page).to have_content('Endereço: Almeida do Aeroporto, 1000, CEP: 15000-000')

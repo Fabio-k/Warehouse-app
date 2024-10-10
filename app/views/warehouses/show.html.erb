@@ -1,8 +1,9 @@
 <%= link_to 'voltar', root_path%>
+<%= link_to 'Editar', edit_warehouse_path(@warehouse.id)%>
 
 <h1>Galpão <%= @warehouse.code%></h1>
 <h2><%= @warehouse.description %></h2>
-<p><%= @warehouse.name%></p>
+<p>Nome: <%= @warehouse.name%></p>
 <p>Cidade: <%= @warehouse.city%></p>
 <p>Área: <%= @warehouse.area %> m2</p>
 <p>Endereço: <%= @warehouse.address%>, CEP: <%= @warehouse.cep %></p>
