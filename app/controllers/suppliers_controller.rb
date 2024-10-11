@@ -1,5 +1,5 @@
 class SuppliersController < ApplicationController
-  before_action :set_supplier, only: [:show]
+  before_action :set_supplier, only: [:show, :edit, :update]
   def index
     @suppliers = Supplier.all
   end
@@ -22,6 +22,19 @@ class SuppliersController < ApplicationController
     end
   end
 
+  def edit
+
+  end
+
+  def update
+    if @supplier.update(supplier_params)
+      redirect_to @supplier, notice: 'fornecedor atualizado com sucesso'
+    else
+      flash[:notice] = 'Erro ao atualizar fornecedor'
+      render 'edit'
+    end
+  end
+
   private 
   def supplier_params
     params.require(:supplier).permit(:brand_name, :corporate_name, :registration_number, :full_address, :city, :state, :email)  
@@ -30,4 +43,5 @@ class SuppliersController < ApplicationController
   def set_supplier
     @supplier = Supplier.find(params[:id])
   end
+
 end
