@@ -13,11 +13,11 @@ class SuppliersController < ApplicationController
   end
 
   def create
-    supplier = Supplier.new(supplier_params)
-    if supplier.save
-      redirect_to supplier, notice: 'Fornecedor cadastrado com sucesso'
+    @supplier = Supplier.new(supplier_params)
+    if @supplier.save
+      redirect_to @supplier, notice: 'Fornecedor cadastrado com sucesso'
     else
-      flash[:notice] = 'Erro ao cadastrar usuário'
+      flash[:notice] = 'Fornecedor não cadastrado'
       render 'new'
     end
   end

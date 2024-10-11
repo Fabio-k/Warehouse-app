@@ -26,9 +26,25 @@ describe 'user regiter supplier ' do
     fill_in 'Endereço', with: 'st. petersburg, 101'
     fill_in 'Cidade',  with: 'California'
     fill_in 'Estado', with: 'California'
+    fill_in 'Email', with: 'apple@apple.com'
     click_on 'Cadastrar'
 
+    expect(page).not_to have_content 'Galpão não cadastrado'
     expect(page).to have_content 'Fornecedor cadastrado com sucesso'
     expect(page).to have_content 'Apple'
+  end
+
+  it 'with failed' do
+    visit root_path
+    click_on 'Fornecedores'
+    click_on 'Cadastrar fornecedor'
+
+    fill_in 'Nome da marca', with: ''
+    fill_in 'Razão social', with: ''
+    fill_in 'CNPJ', with: ''
+
+    click_on 'Cadastrar'
+
+    expect(page).to have_content 'Fornecedor não cadastrado'
   end
 end
