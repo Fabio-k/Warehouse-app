@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 describe 'user edit warehouse' do
   it 'from the details page' do
     Warehouse.create!(name: 'Rio', code: 'SDU', city: 'Rio de Janeiro', area: 60_000, 

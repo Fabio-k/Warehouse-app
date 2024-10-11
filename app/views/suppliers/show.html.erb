@@ -1,0 +1,24 @@
+<h1>Fornecedores <%= @supplier.brand_name %></h1>
+<p><%= @supplier.corporate_name %></p>
+<dl>
+    <dt>
+        Documento:
+    </dt>
+    <dd>
+        <%= @supplier.registration_number %>
+    </dd>
+    <dt>
+        Endereço
+    </dt>
+    <dd>
+        <%= @supplier.full_address%> - <%= @supplier.city%> - <%= @supplier.state%>
+    </dd>
+    <dt>
+        Email: 
+    </dt>
+    <dd>
+        <%= @supplier.email%>
+    </dd>
+</dl>
+
+<%= link_to 'Voltar', suppliers_path%>

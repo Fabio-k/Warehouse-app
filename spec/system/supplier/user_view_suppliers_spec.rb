@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 describe 'user visit suppliers' do
   it 'with success' do
     visit root_path
@@ -9,7 +11,8 @@ describe 'user visit suppliers' do
   end
 
   it 'and see the listed suppliers' do
-    Supplier.create!(brand_name: 'Adidas', corporate_name: 'Adidas co', registration_number: '2342-343', full_address: 'Av paulista, 123', city: 'São Paulo', state: 'SP', email: 'adidas@gmail.com')
+    Supplier.create!(brand_name: 'Adidas', corporate_name: 'Adidas co', registration_number: '2342-343', 
+        full_address: 'Av paulista, 123', city: 'São Paulo', state: 'SP', email: 'adidas@gmail.com')
 
     visit root_path
     click_on 'Fornecedores'
