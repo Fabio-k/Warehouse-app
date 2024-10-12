@@ -1,10 +1,14 @@
 describe 'user register product model' do
   it 'with success' do
+    user = User.create!(name: 'fabio', email: 'fabio@gmail.com', password: 'senha123')
+    
+
     Supplier.create!(brand_name: 'Apple', corporate_name:'Apple Electronics Ltda', registration_number: '1324-432', 
         full_address: 'Av Brasil, 340', city: 'São Paulo', state: 'SP', email: 'apple@apple.com')
     Supplier.create!(brand_name: 'Samsung', corporate_name:'Samsung Electronics Ltda', registration_number: '1324-432', 
         full_address: 'Av nações unidas, 100', city: 'São Paulo', state: 'SP', email: 'samsung@samsung.com')
 
+    login_as(user)
     visit root_path
     click_on 'Modelos de Produtos'
     click_on 'Cadastrar modelo de produto'
@@ -29,9 +33,11 @@ describe 'user register product model' do
   end
 
   it 'with incomplete data' do
+    user = User.create!(name: 'fabio', email: 'fabio@gmail.com', password: 'senha123')
     Supplier.create!(brand_name: 'Apple', corporate_name:'Apple Electronics Ltda', registration_number: '1324-432', 
         full_address: 'Av Brasil, 340', city: 'São Paulo', state: 'SP', email: 'apple@apple.com')
-  
+    
+    login_as(user)
     visit root_path
     click_on 'Modelos de Produtos'
     click_on 'Cadastrar modelo de produto'
