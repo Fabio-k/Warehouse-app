@@ -1,6 +1,8 @@
 describe 'user register product model' do
   it 'with success' do
-    supplier = Supplier.create!(brand_name: 'Apple', corporate_name:'Apple Electronics Ltda', registration_number: '1324-432', 
+    Supplier.create!(brand_name: 'Apple', corporate_name:'Apple Electronics Ltda', registration_number: '1324-432', 
+        full_address: 'Av Brasil, 340', city: 'São Paulo', state: 'SP', email: 'apple@apple.com')
+    Supplier.create!(brand_name: 'Samsung', corporate_name:'Samsung Electronics Ltda', registration_number: '1324-432', 
         full_address: 'Av nações unidas, 100', city: 'São Paulo', state: 'SP', email: 'samsung@samsung.com')
 
     visit root_path
@@ -16,6 +18,7 @@ describe 'user register product model' do
     select 'Apple', from: 'Fornecedor'
     click_on 'Enviar'
 
+    expect(page).not_to have_content 'Erro ao cadastrar modelo de produto'
     expect(page).to have_content 'Modelo de produto salvo com sucesso'
     expect(page).to have_content 'Macbook pro m3'
     expect(page).to have_content 'Peso: 1800g'
@@ -23,5 +26,26 @@ describe 'user register product model' do
     expect(page).to have_content 'SKU: MBOK-APPLE-M3'
     expect(page).to have_content 'Fornecedor: Apple'
     
+  end
+
+  it 'with incomplete data' do
+    Supplier.create!(brand_name: 'Apple', corporate_name:'Apple Electronics Ltda', registration_number: '1324-432', 
+        full_address: 'Av Brasil, 340', city: 'São Paulo', state: 'SP', email: 'apple@apple.com')
+  
+    visit root_path
+    click_on 'Modelos de Produtos'
+    click_on 'Cadastrar modelo de produto'
+
+    fill_in 'Nome', with: ''
+    fill_in 'SKU', with: ''
+    click_on 'Enviar'
+
+    expect(page).to have_content 'Erro ao cadastrar modelo de produto'
+    expect(page).to have_content 'Nome não pode ficar em branco'
+    expect(page).to have_content 'SKU não pode ficar em branco'
+    expect(page).to have_content 'Peso não pode ficar em branco'
+    expect(page).to have_content 'Altura não pode ficar em branco'
+    expect(page).to have_content 'Largura não pode ficar em branco'
+    expect(page).to have_content 'Profundidade não pode ficar em branco'
   end
 end

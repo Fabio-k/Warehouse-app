@@ -1,3 +1,14 @@
+<% if @product_model.errors.any?%>
+    <h1>Verifique os erros abaixo:</h1>
+    <ul>
+        <%@product_model.errors.full_messages.each do |msg|%>
+            <li>
+                <%= msg%>
+            </li>
+        <% end %>
+    </ul>
+<% end%>
+
 <%= form_with model: @product_model do |f|%>
     
     <div>
@@ -26,7 +37,7 @@
     </div>
     <div>
         <%= f.label :supplier_id%>
-        <%= f.collection_select :supplier_id, Supplier.order(:brand_name), :id, :brand_name%>
+        <%= f.collection_select :supplier_id, @suppliers, :id, :brand_name%>
     </div>
     <%= f.submit 'Enviar'%>
 
