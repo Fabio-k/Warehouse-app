@@ -22,6 +22,7 @@ pt-BR:
         state: "Estado"
       product_model:
         name: "Nome"
+        dimension: "Dimensões"
         weight: "Peso"
         height: "Altura"
         width: "Largura"

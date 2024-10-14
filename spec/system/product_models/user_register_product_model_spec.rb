@@ -19,7 +19,7 @@ describe 'user register product model' do
     fill_in 'Largura', with: 30
     fill_in 'Profundidade', with: 21
     fill_in 'SKU', with: 'MBOK-APPLE-M3'
-    select 'Apple', from: 'Fornecedor'
+    select 'Apple Electronics Ltda - 1324-432', from: 'Fornecedor'
     click_on 'Enviar'
 
     expect(page).not_to have_content 'Erro ao cadastrar modelo de produto'

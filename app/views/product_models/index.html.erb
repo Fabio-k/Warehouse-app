@@ -5,10 +5,10 @@
         <div>
             <h2><%= pm.name%></h2>
             <dl>
-                <dt>SKU</dt>
+                <dt><%=ProductModel.human_attribute_name 'sku'%></dt>
                 <dd><%= pm.sku %></dd>
             </dl>
-            <dt>Fornecedor</dt>
+            <dt><%=ProductModel.human_attribute_name 'supplier'%></dt>
             <dd><%= pm.supplier.brand_name%></dd>
         </div>
     <% end %>

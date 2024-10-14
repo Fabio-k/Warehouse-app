@@ -53,4 +53,13 @@ RSpec.describe Supplier, type: :model do
       end
     end
   end
+
+  describe '#description' do
+    it 'show corporate name and registration number' do
+      supplier = Supplier.new(brand_name: 'Nintendo', corporate_name: 'Nintendo company', registration_number: '1234-234', 
+      full_address: 'Av shinbuko, 234', city: 'Tokyo', state: 'Tokyo', email: 'Nintendo@nintendo.com')
+
+      expect(supplier.description).to eq 'Nintendo company - 1234-234'
+    end
+  end
 end

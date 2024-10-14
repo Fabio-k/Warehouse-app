@@ -25,7 +25,7 @@ describe 'user register order' do
     login_as(user)
     visit root_path
     click_on 'Registrar Pedido'
-    select warehouse.name, from: 'Galpão Destino'
+    select warehouse.full_description, from: 'Galpão Destino'
     select supplier.corporate_name, from: 'Fornecedor'
     fill_in 'Data Prevista de Entrega', with: '12/10/2024'
     click_on 'Gravar'
@@ -33,9 +33,9 @@ describe 'user register order' do
     expect(page).not_to have_content 'Rio'
     expect(page).not_to have_content 'Samsung Electronics Ltda'
     expect(page).to have_content 'Pedido cadastrado com sucesso'
-    expect(page).to have_content 'Galpão Destino: Aeroporto SP'
-    expect(page).to have_content 'Fornecedor: Asics co'
-    expect(page).to have_content 'Usuário Responsável: Fabio <fabio@gmail.com>'
+    expect(page).to have_content 'Galpão Destino: GRU - Aeroporto SP'
+    expect(page).to have_content 'Fornecedor: Asics co - 2345-032'
+    expect(page).to have_content 'Usuário Responsável: Fabio - fabio@gmail.com'
     expect(page).to have_content 'Data Prevista de Entrega: 12/10/2024'
   end
 end

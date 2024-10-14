@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'user sign in' do
   it 'with success' do
-    User.create!(email: 'user@gmail.com', password: 'senha123')
+    User.create!(name: 'user', email: 'user@gmail.com', password: 'senha123')
 
     visit root_path
     click_on 'Entrar'
@@ -18,7 +18,7 @@ describe 'user sign in' do
     within('nav') do
       expect(page).not_to have_link 'Entrar'
       expect(page).to have_button 'Sair'
-      expect(page).to have_content 'user@gmail.com'
+      expect(page).to have_content 'user - user@gmail.com'
     end
 
   end
