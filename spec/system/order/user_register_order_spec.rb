@@ -21,6 +21,7 @@ describe 'user register order' do
     Supplier.create!(brand_name: 'Samsung', corporate_name:'Samsung Electronics Ltda', registration_number: '1324-432', 
     full_address: 'Av nações unidas, 100', city: 'São Paulo', state: 'SP', email: 'samsung@samsung.com')
     
+    allow(SecureRandom).to receive(:alphanumeric).with(8).and_return('ABCD1234')
 
     login_as(user)
     visit root_path
@@ -33,6 +34,7 @@ describe 'user register order' do
     expect(page).not_to have_content 'Rio'
     expect(page).not_to have_content 'Samsung Electronics Ltda'
     expect(page).to have_content 'Pedido cadastrado com sucesso'
+    expect(page).to have_content "Pedido ABCD1234"
     expect(page).to have_content 'Galpão Destino: GRU - Aeroporto SP'
     expect(page).to have_content 'Fornecedor: Asics co - 2345-032'
     expect(page).to have_content 'Usuário Responsável: Fabio - fabio@gmail.com'
