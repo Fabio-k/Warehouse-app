@@ -28,16 +28,34 @@ describe 'user register order' do
     click_on 'Registrar Pedido'
     select warehouse.full_description, from: 'Galpão Destino'
     select supplier.corporate_name, from: 'Fornecedor'
-    fill_in 'Data Prevista de Entrega', with: '12/10/2024'
+    fill_in 'Data Prevista de Entrega', with: 1.day.from_now
     click_on 'Gravar'
     
-    expect(page).not_to have_content 'Rio'
+    expect(page).not_to have_content 'Erro ao cadastrar pedido'
     expect(page).not_to have_content 'Samsung Electronics Ltda'
     expect(page).to have_content 'Pedido cadastrado com sucesso'
     expect(page).to have_content "Pedido ABCD1234"
     expect(page).to have_content 'Galpão Destino: GRU - Aeroporto SP'
     expect(page).to have_content 'Fornecedor: Asics co - 2345-032'
     expect(page).to have_content 'Usuário Responsável: Fabio - fabio@gmail.com'
-    expect(page).to have_content 'Data Prevista de Entrega: 12/10/2024'
+    expect(page).to have_content "Data Prevista de Entrega: #{1.day.from_now.to_date.strftime('%d/%m/%Y')}"
+  end
+
+  it 'with fail' do
+    user = User.create!(name: 'Fabio', email: 'fabio@gmail.com', password: 'senha123')  
+    allow(SecureRandom).to receive(:alphanumeric).with(8).and_return('ABCD1234')
+
+    login_as(user)
+    visit root_path
+    click_on 'Registrar Pedido'
+    fill_in 'Data Prevista de Entrega', with: ''
+    click_on 'Gravar'
+    
+  
+    expect(page).to have_content 'Erro ao cadastrar pedido'
+    expect(page).to have_content 'Galpão Destino é obrigatório(a)'
+    expect(page).to have_content 'Fornecedor é obrigatório(a)'
+    expect(page).to have_content 'Data Prevista de Entrega não pode ficar em branco'
+
   end
 end

@@ -13,6 +13,8 @@ class OrdersController < ApplicationController
     if @order.save
       redirect_to @order, notice: 'Pedido cadastrado com sucesso'
     else
+      @warehouses = Warehouse.all
+      @suppliers = Supplier.all
       flash.now[:notice] = 'Erro ao cadastrar pedido'
       render 'new'
     end
