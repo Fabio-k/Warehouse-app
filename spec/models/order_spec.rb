@@ -66,7 +66,7 @@ RSpec.describe Order, type: :model do
           address: 'Almeida do Aeroporto, 1000', cep: '15000-000', description: 'Galpão destinado para carga internacionais')
       supplier = Supplier.create!(brand_name: 'Asics', corporate_name: 'Asics co', registration_number: '2345-032', 
           full_address: 'Av João Pessoa, 234', city: 'Manaus', state: 'Amazonas', email: 'asics@asics.com')
-      order = Order.new(warehouse: warehouse, supplier: supplier, user: user, estimated_delivery_date: 1.day.from_now, code: '')
+      order = Order.new(warehouse: warehouse, supplier: supplier, user: user, estimated_delivery_date: 1.day.from_now)
 
       order.save!
       result = order.code
@@ -81,8 +81,8 @@ RSpec.describe Order, type: :model do
           address: 'Almeida do Aeroporto, 1000', cep: '15000-000', description: 'Galpão destinado para carga internacionais')
       supplier = Supplier.create!(brand_name: 'Asics', corporate_name: 'Asics co', registration_number: '2345-032', 
           full_address: 'Av João Pessoa, 234', city: 'Manaus', state: 'Amazonas', email: 'asics@asics.com')
-      first_order = Order.create!(warehouse: warehouse, supplier: supplier, user: user, estimated_delivery_date: 1.day.from_now, code: '')
-      second_order = Order.new(warehouse: warehouse, supplier: supplier, user: user, estimated_delivery_date: 1.day.from_now, code: '')
+      first_order = Order.create!(warehouse: warehouse, supplier: supplier, user: user, estimated_delivery_date: 1.day.from_now)
+      second_order = Order.new(warehouse: warehouse, supplier: supplier, user: user, estimated_delivery_date: 1.day.from_now)
 
       expect(second_order.code).not_to eq first_order.code
     end
